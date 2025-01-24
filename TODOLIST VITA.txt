@@ -1,0 +1,23 @@
+Main: Python Django
+Classis front end - (Html,CSS)
+
+
+To Do LIST:
+Landing page
+Sign,Login Pages
+Question Page
+University Page
+Setting page
+Profile Page
+admin panel
+
+Python:
+models.py (bazastan kavshiri)
+manage.py (run)
+view.py (render)
+site.db (database)
+migrations
+bank.api (samomavlod)
+Spring (maybe)
+
+
