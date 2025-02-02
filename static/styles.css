@@ -1,0 +1,55 @@
+/* Apply background image */
+body {
+    background-image: url('/static/photo/Ivane%20Javakhisvili.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar Styling */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 18px;
+}
+
+/* VITA Button Styling */
+.vita-btn {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Main Content Styling */
+.content {
+    margin-top: 100px;
+    background: rgba(0, 0, 0, 0.5); /* Background overlay for readability */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+h1, h2 {
+    color: #ffd700; /* Gold color for headings */
+}
+
+ul {
+    list-style-type: square;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    color: white;
+}
