@@ -1,0 +1,425 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>VITA - Contact Us</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            animation: fadeIn 1s ease-out;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Animation */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(33, 37, 41, 0.95) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-nav .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Register Button Styles */
+        .btn-primary {
+            background: linear-gradient(45deg, #4c51bf, #6b46c1);
+            border: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #6b46c1, #805ad5);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(107, 70, 193, 0.2);
+        }
+
+        /* Team Cards with Animation */
+        .team-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            max-width: 100%;
+            margin: 120px auto 60px;
+            padding: 20px;
+            flex-wrap: nowrap; /* Prevents wrapping */
+            overflow-x: auto; /* Allows horizontal scroll if needed */
+        }
+
+        .team-card {
+            min-width: 250px; /* Fixed width to ensure consistent sizing */
+            flex: 0 0 auto; /* Prevents cards from growing/shrinking */
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background: white;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(76, 81, 191, 0.1), rgba(107, 70, 193, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-card img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 4px solid #f0f0f0;
+            transition: all 0.3s ease;
+            animation: pulseImage 2s infinite;
+        }
+
+        .team-card:hover img {
+            border-color: #6b46c1;
+            transform: scale(1.05);
+        }
+
+        .team-card h5 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .team-card p {
+            color: #6b46c1;
+            font-weight: 500;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover h5 {
+            color: #4c51bf;
+            transform: translateY(-2px);
+        }
+
+        .team-card:hover p {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        /* Staggered animations with enhanced timing */
+        .team-card:nth-child(1) { animation-delay: 0.2s; }
+        .team-card:nth-child(2) { animation-delay: 0.4s; }
+        .team-card:nth-child(3) { animation-delay: 0.6s; }
+        .team-card:nth-child(4) { animation-delay: 0.8s; }
+
+        /* New animations */
+        @keyframes pulseImage {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer Styles */
+        .footer-vita {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            padding: 60px 0;
+            margin-top: auto;
+        }
+
+        .footer-vita-logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-vita-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-vita-description {
+            color: #cbd5e0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-vita-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-vita-links a:hover {
+            color: #fff;
+        }
+
+        .footer-vita-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-vita-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .footer-vita-social a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        /* Add smooth scrolling for the container */
+        .team-container {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px; /* Add space for potential scrollbar */
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .team-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .team-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .team-container {
+                justify-content: flex-start;
+                padding-left: 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md fixed-top bg-dark bg-gradient fs-5 py-3" data-bs-theme="dark">
+        <div class="container-fluid">
+            <button data-bs-toggle="collapse" data-bs-target="#navcol-2" class="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-uppercase text-center" id="navcol-2">
+                <a href="index.html">
+                    <img alt="Logo" src="assets/img/Vita_logo_white.png">
+                </a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about_vita.html">About us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact_us.html">Contact</a></li>
+                </ul>
+                <a class="btn btn-primary ms-md-2" role="button" href="register.html">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="team-container">
+            <div class="team-card">
+                <img src="assets/img/Black.jpg" alt="Gochka Kukava">
+                <h5>გოჩა კუკავა</h5>
+                <p>CMO&amp;CFO</p>
+            </div>
+
+            <div class="team-card">
+                <img src="assets/img/Black.jpg" alt="Dati Bukia">
+                <h5>დათა ბუკია</h5>
+                <p>Full-Stack Dev</p>
+            </div>
+
+            <div class="team-card">
+                <img src="assets/img/Black.jpg" alt="Luka Kukava">
+                <h5>ლუკა კუკავა</h5>
+                <p>CEO</p>
+            </div>
+
+            <div class="team-card">
+                <img src="assets/img/Black.jpg" alt="Misho Yurashvili">
+                <h5>მიშო ყურაშვილი</h5>
+                <p>Back-End Dev.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-vita">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="assets/img/Vita_logo_white.png" alt="VITA Logo" class="footer-vita-logo">
+                    <h3 class="footer-vita-title">VITA - Your Career Guide</h3>
+                    <p class="footer-vita-description">
+                        ჩვენ გეხმარებით აირჩიოთ სწორი პროფესია და უნივერსიტეტი თქვენი მომავლისთვის.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="footer-vita-title">სწრაფი ბმულები</h4>
+                    <div class="footer-vita-links">
+                        <div class="d-flex flex-column">
+                            <a href="index.html">მთავარი</a>
+                            <a href="service.html">სერვისები</a>
+                            <a href="about_vita.html">ჩვენს შესახებ</a>
+                            <a href="contact_us.html">კონტაქტი</a>
+                            <a href="register.html">რეგისტრაცია</a>
+                            <a href="login.html">შესვლა</a>
+                            <a href="chose_profession.html">პროფესიის არჩევა</a>
+                            <a href="chose_universitie.html">უნივერსიტეტის არჩევა</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="footer-vita-title">კონტაქტი</h4>
+                    <p class="footer-vita-description">
+                        <i class="fas fa-map-marker-alt me-2"></i> თბილისი, საქართველო<br>
+                        <i class="fas fa-phone me-2"></i> +995 555 12 34 56<br>
+                        <i class="fas fa-envelope me-2"></i> info@vita.ge
+                    </p>
+                    <div class="footer-vita-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="small text-muted">&copy; 2024 VITA. ყველა უფლება დაცულია.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Ripple effect for buttons
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+
+                this.appendChild(ripple);
+
+                ripple.addEventListener('animationend', () => {
+                    ripple.remove();
+                });
+            });
+        });
+    </script>
+</body> 
