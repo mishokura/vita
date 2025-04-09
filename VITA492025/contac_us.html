@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>VITA</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="assets/css/Font%20Awesome%205%20Brands.css">
+    <link rel="stylesheet" href="assets/css/Font%20Awesome%205%20Free.css">
+    <link rel="stylesheet" href="assets/css/FontAwesome.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="assets/css/css/Navbar-Right-Links-icons.css">
+    <link rel="stylesheet" href="assets/css/css/Pretty-Footer-.css">
+    <link rel="stylesheet" href="assets/css/css/Navbar-Right-Links-Dark-icons.css">
+    <link rel="stylesheet" href="assets/css/css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min-1.css">
+    <link rel="stylesheet" href="assets/css/css/Simple-Slider-swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/css/Simple-Slider.css">
+    <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min-2.css">
+    <link rel="stylesheet" href="assets/css/css/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/css/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/css/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/css/css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/css/css/bootstrap/css/bootstrap.min-1.css">
+    <link rel="stylesheet" href="assets/css/css/css/Simple-Slider-swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/css/css/Simple-Slider.css">
+    <link rel="stylesheet" href="assets/css/css/bootstrap/css/bootstrap.min-3.css">
+    <link rel="stylesheet" href="assets/css/css/multiple-item-carousel-slider.css">
+    <link rel="stylesheet" href="assets/css/css/Pretty-Footer-.css">
+    <link rel="stylesheet" href="assets/css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="assets/css/css/Navbar-Right-Links-icons.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Footer-.css">
+    <link rel="stylesheet" href="assets/css/Team-icons.css">
+    <link rel="stylesheet" href="assets/css/Team-images.css">
+    <style>
+.team-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    min-height: 100vh;
+    margin-top: 100px; /* Adjust this value to match navbar height */
+}
+
+
+        .team-card {
+            width: 200px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .team-card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .team-card h5 {
+            font-weight: bold;
+            color: #1e3d58;
+            margin-bottom: 10px;
+        }
+
+        .team-card p {
+            color: #6c757d;
+        }
+
+        /* Optional: Add hover effect */
+        .team-card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Add a minimum height to the body to ensure that content is vertically centered */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex-grow: 1;
+        }
+        /* Fade-in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to team cards */
+.team-card {
+    width: 200px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+    opacity: 0; /* Start invisible */
+    transform: translateY(30px); /* Start lower */
+    animation: fadeInUp 1s ease-out forwards; /* Animation */
+}
+
+/* Delay animations for each card for a staggered effect */
+.team-card:nth-child(1) { animation-delay: 0.3s; }
+.team-card:nth-child(2) { animation-delay: 0.5s; }
+.team-card:nth-child(3) { animation-delay: 0.7s; }
+.team-card:nth-child(4) { animation-delay: 0.9s; }
+
+/* Navbar fix: ensure content is below navbar */
+.team-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    min-height: 100vh;
+    margin-top: 80px; /* Adjust based on navbar height */
+}
+
+/* Page-wide fade-in */
+body {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md fixed-top bg-dark bg-gradient fs-5 py-3 fade-in" data-bs-theme="dark">
+        <div class="container-fluid"><button data-bs-toggle="collapse" data-bs-target="#navcol-2" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-uppercase text-center" id="navcol-2"><img alt="Logo" src="assets/img/Vita_logo_white.png">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about_vita.html">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact_us.html">Contact</a></li>
+                </ul><a class="btn btn-primary ms-md-2" role="button" href="register.html">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Centered team container -->
+        <div class="team-container">
+            <div class="team-card">
+                <img src="assets/img/Black.jpg" alt="Gochka Kukava">
+                <h5><strong>გოჩა კუკავა</strong></h5>
+                <p>CMO&amp;CFO</p>
+            </div>
+
+            <div class="team-card">
+                <img src="assets/img/Black.jpg" alt="Dati Bukia">
+                <h5><strong>დათა ბუკია</strong></h5>
+                <p>Full-Stack Dev</p>
+            </div>
+
+            <div class="team-card">
+                <img src="assets/img/Black.jpg" alt="Luka Kukava">
+                <h5><strong>ლუკა კუკავა</strong></h5>
+                <p>CEO</p>
+            </div>
+
+            <div class="team-card">
+                <img src="assets/img/Black.jpg" alt="Misho Yurashvili">
+                <h5><strong>მიშო ყურაშვილი</strong></h5>
+                <p>Back-End Dev.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 footer-navigation">
+                <h3><a href="#">Company</a><span>logo </span></h3>
+                <p class="links"><a href="#">Home</a><strong> · </strong><a href="#">Blog</a><strong> · </strong><a href="#">Pricing</a><strong> · </strong><a href="#">About</a><strong> · </strong><a href="#">FAQ</a><strong> · </strong><a href="#">Contact</a></p>
+                <p class="company-name">Company Name © 2025</p>
+            </div>
+            <div class="col-sm-6 col-md-4 footer-contacts">
+                <div><span class="fa fa-map-marker footer-contacts-icon"></span>
+                    <p><span class="new-line-span">21 Revolution Street</span> Paris, France</p>
+                </div>
+                <div><i class="fas fa-phone footer-contacts-icon"></i>
+                    <p class="text-start footer-center-info email"> +1 555 123456</p>
+                </div>
+                <div><i class="fas fa-envelope footer-contacts-icon"></i>
+                    <p><a href="mailto:support@company.com">support@company.com</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 footer-about">
+                <h4>About the company</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.</p>
+                <div class="social-links social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a></div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

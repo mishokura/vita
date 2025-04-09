@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>VITAA - Login</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(33, 37, 41, 0.95) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 0;
+        }
+
+        .auth-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .auth-banner {
+            flex: 1;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
+                        url('assets/img/Ivane_Javakhishvili.jpg') center/cover;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .banner-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 3s ease infinite;
+        }
+
+        .auth-form {
+            flex: 1;
+            padding: 40px;
+            background: white;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control:focus {
+            border-color: #4c51bf;
+            box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.1);
+            outline: none;
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, #4a90e2, #7c4dff);
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #7c4dff, #4a90e2);
+        }
+
+        .social-login {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-social {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            color: #4a5568;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-social:hover {
+            background: #f7fafc;
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #718096;
+        }
+
+        .auth-footer a {
+            color: #4c51bf;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .auth-banner {
+                display: block;
+            }
+        }
+
+        /* Add these button styles */
+        .btn-primary {
+            background: linear-gradient(45deg, #4c51bf, #6b46c1);
+            border: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #6b46c1, #805ad5);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(107, 70, 193, 0.2);
+        }
+
+        /* Add ripple effect styles */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md fixed-top bg-dark bg-gradient fs-5 py-3" data-bs-theme="dark">
+        <div class="container-fluid">
+            <button data-bs-toggle="collapse" data-bs-target="#navcol-2" class="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-uppercase text-center" id="navcol-2">
+                <a href="index.html">
+                    <img alt="Logo" src="assets/img/Vita_logo_white.png">
+                </a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about_vita.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact_us.html">Contact</a></li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-primary ms-md-2 active" role="button" href="log_in.html">Log in</a>
+                    <a class="btn btn-primary ms-md-2" role="button" href="register.html">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <!-- Left Side - Banner -->
+            <div class="auth-banner">
+                <div class="banner-content">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to your account and continue planning your professional future with VITA.</p>
+                </div>
+            </div>
+
+            <!-- Right Side - Form -->
+            <div class="auth-form">
+                <div class="form-header">
+                    <h2>Login</h2>
+                    <p>Enter your credentials</p>
+                </div>
+
+                <form method="post" action="index.html">
+                    <div class="social-login">
+                        <button type="button" class="btn-social">
+                            <i class="fab fa-google"></i>
+                            Login with Google
+                        </button>
+                        <button type="button" class="btn-social">
+                            <i class="fab fa-facebook-f"></i>
+                            Login with Facebook
+                        </button>
+                    </div>
+
+                    <div class="divider">or</div>
+
+                    <input class="form-control" type="email" name="email" placeholder="Email">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    
+                    <button class="btn btn-primary" type="submit">Log in</button>
+
+                    <div class="auth-footer">
+                        Don't have an account? <a href="register.html">Register</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        // Ripple effect for buttons
+        document.querySelectorAll('.btn-login, .btn-primary').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+
+                this.appendChild(ripple);
+
+                ripple.addEventListener('animationend', () => {
+                    ripple.remove();
+                });
+            });
+        });
+
+        // Add form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add any validation logic here if needed
+            window.location.href = 'index.html'; // Redirect to index page
+        });
+
+        // Handle social login buttons
+        document.querySelectorAll('.btn-social').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Add social login logic here
+                // For now, just redirect to index
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>VITAA - Choose Profession</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(33, 37, 41, 0.95) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profession-container {
+            min-height: 100vh;
+            padding: 100px 20px;
+        }
+
+        .profession-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        .profession-header h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .profession-header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .profession-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profession-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profession-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .profession-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #4a90e2, #7c4dff);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .profession-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .profession-icon {
+            font-size: 3rem;
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+
+        .profession-title {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .profession-description {
+            color: #718096;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4c51bf, #6b46c1);
+            border: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(107, 70, 193, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profession-card {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .profession-card:nth-child(2) { animation-delay: 0.2s; }
+        .profession-card:nth-child(3) { animation-delay: 0.4s; }
+        .profession-card:nth-child(4) { animation-delay: 0.6s; }
+
+        .question-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        .question-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .question {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .question h3 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .answer-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: left;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .answer-btn:hover {
+            border-color: #4a90e2;
+            transform: translateX(5px);
+        }
+
+        .answer-btn.selected {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .results-container {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profession-result {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .percentage-circle {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        .percentage-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .percentage-circle circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+
+        .percentage-circle .background {
+            stroke: #e2e8f0;
+        }
+
+        .percentage-circle .progress {
+            stroke: #4a90e2;
+            transition: stroke-dasharray 1s ease;
+        }
+
+        .percentage-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .progress-btn {
+            background: linear-gradient(45deg, #4a90e2, #7c4dff);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .progress-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md fixed-top bg-dark bg-gradient fs-5 py-3" data-bs-theme="dark">
+        <div class="container-fluid">
+            <button data-bs-toggle="collapse" data-bs-target="#navcol-2" class="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-uppercase text-center" id="navcol-2">
+                <a href="index.html">
+                    <img alt="Logo" src="assets/img/Vita_logo_white.png">
+                </a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="service.html">სერვისები</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about_vita.html">ჩვენს შესახებ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact_us.html">კონტაქტი</a></li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-outline-light ms-md-2" role="button" href="log_in.html">შესვლა</a>
+                    <a class="btn btn-primary ms-md-2" role="button" href="register.html">რეგისტრაცია</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="profession-container">
+        <div class="profession-header">
+            <h1>პროფესიის შერჩევის ტესტი</h1>
+            <p>უპასუხეთ კითხვებს და აღმოაჩინეთ თქვენთვის შესაფერისი პროფესია</p>
+        </div>
+
+        <div id="questionsContainer" class="question-container active">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+
+        <div id="resultsContainer" class="results-container">
+            <h2 class="text-center mb-4">თქვენი შედეგები</h2>
+            <!-- Results will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        const questions = [
+            {
+                question: "რა გაინტერესებთ უფრო მეტად?",
+                answers: [
+                    { text: "ტექნოლოგიები და პროგრამირება", professions: { programming: 30, business: 10 } },
+                    { text: "ბიზნესის მართვა და ფინანსები", professions: { business: 30, law: 10 } },
+                    { text: "ადამიანების დახმარება და მკურნალობა", professions: { medicine: 30, law: 10 } },
+                    { text: "კანონები და სამართლიანობა", professions: { law: 30, business: 10 } }
+                ]
+            },
+            {
+                question: "როგორ გადაჭრით პრობლემებს?",
+                answers: [
+                    { text: "ლოგიკური და ანალიტიკური მიდგომით", professions: { programming: 25, law: 15 } },
+                    { text: "კრეატიული და ინოვაციური გზებით", professions: { business: 25, programming: 15 } },
+                    { text: "ემპათიით და მზრუნველობით", professions: { medicine: 25, law: 15 } },
+                    { text: "სისტემური და მეთოდური მიდგომით", professions: { law: 25, business: 15 } }
+                ]
+            },
+            {
+                question: "რა არის თქვენთვის ყველაზე მნიშვნელოვანი სამსახურში?",
+                answers: [
+                    { text: "ინოვაციური პროექტების შექმნა", professions: { programming: 25, business: 15 } },
+                    { text: "წარმატებული ბიზნესის აშენება", professions: { business: 25, law: 15 } },
+                    { text: "ადამიანების სიცოცხლის გადარჩენა", professions: { medicine: 25, law: 10 } },
+                    { text: "სამართლიანობის დაცვა", professions: { law: 25, medicine: 10 } }
+                ]
+            },
+            {
+                question: "რომელი საგნები გიყვარდათ სკოლაში?",
+                answers: [
+                    { text: "მათემატიკა და ფიზიკა", professions: { programming: 20, business: 10 } },
+                    { text: "ეკონომიკა და მათემატიკა", professions: { business: 20, law: 10 } },
+                    { text: "ბიოლოგია და ქიმია", professions: { medicine: 20, programming: 5 } },
+                    { text: "ისტორია და სამოქალაქო განათლება", professions: { law: 20, business: 10 } }
+                ]
+            },
+            {
+                question: "როგორ გარემოში გირჩევნიათ მუშაობა?",
+                answers: [
+                    { text: "თანამედროვე ტექნოლოგიურ ოფისში", professions: { programming: 20, business: 15 } },
+                    { text: "დინამიურ ბიზნეს გარემოში", professions: { business: 20, law: 15 } },
+                    { text: "საავადმყოფოში ან კლინიკაში", professions: { medicine: 20, programming: 5 } },
+                    { text: "იურიდიულ ფირმაში", professions: { law: 20, business: 15 } }
+                ]
+            },
+            {
+                question: "რა ტიპის გამოწვევები გიზიდავთ?",
+                answers: [
+                    { text: "ტექნიკური პრობლემების გადაჭრა", professions: { programming: 25, business: 10 } },
+                    { text: "სტრატეგიული ბიზნეს გადაწყვეტილებები", professions: { business: 25, law: 15 } },
+                    { text: "სამედიცინო დიაგნოზების დასმა", professions: { medicine: 25, programming: 5 } },
+                    { text: "რთული სამართლებრივი საქმეები", professions: { law: 25, business: 10 } }
+                ]
+            },
+            {
+                question: "რა არის თქვენი ძლიერი მხარე?",
+                answers: [
+                    { text: "ლოგიკური აზროვნება და კოდირება", professions: { programming: 25, law: 10 } },
+                    { text: "ლიდერობა და ორგანიზება", professions: { business: 25, law: 15 } },
+                    { text: "ემპათია და მზრუნველობა", professions: { medicine: 25, business: 10 } },
+                    { text: "ანალიტიკური აზროვნება", professions: { law: 25, programming: 15 } }
+                ]
+            },
+            {
+                question: "სად ხედავთ თქვენს თავს 10 წლის შემდეგ?",
+                answers: [
+                    { text: "წამყვანი ტექნოლოგიური პროექტების ხელმძღვანელი", professions: { programming: 30, business: 15 } },
+                    { text: "წარმატებული კომპანიის მფლობელი", professions: { business: 30, law: 10 } },
+                    { text: "გამოცდილი ექიმი", professions: { medicine: 30, programming: 5 } },
+                    { text: "წარმატებული იურისტი", professions: { law: 30, business: 10 } }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let results = {
+            programming: 0,
+            business: 0,
+            medicine: 0,
+            law: 0
+        };
+
+        function displayQuestion(index) {
+            const questionContainer = document.getElementById('questionsContainer');
+            const question = questions[index];
+
+            const html = `
+                <div class="question">
+                    <h3>${question.question}</h3>
+                    <div class="answers">
+                        ${question.answers.map((answer, i) => `
+                            <button class="answer-btn" data-index="${i}">
+                                ${answer.text}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+                ${index < questions.length - 1 ? 
+                    '<button class="progress-btn" disabled>შემდეგი კითხვა</button>' : 
+                    '<button class="progress-btn" disabled>შედეგების ნახვა</button>'
+                }
+            `;
+
+            questionContainer.innerHTML = html;
+
+            // Add event listeners
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.addEventListener('click', handleAnswer);
+            });
+        }
+
+        function handleAnswer(e) {
+            // Remove previous selection
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            // Add selection to clicked button
+            e.target.classList.add('selected');
+
+            // Enable next button
+            document.querySelector('.progress-btn').disabled = false;
+
+            // Add click handler to progress button
+            document.querySelector('.progress-btn').addEventListener('click', () => {
+                // Calculate results
+                const answerIndex = e.target.dataset.index;
+                const answer = questions[currentQuestion].answers[answerIndex];
+                
+                // Add to results
+                Object.entries(answer.professions).forEach(([profession, value]) => {
+                    results[profession] += value;
+                });
+
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    displayQuestion(currentQuestion);
+                } else {
+                    showResults();
+                }
+            });
+        }
+
+        function showResults() {
+            const resultsContainer = document.getElementById('resultsContainer');
+            document.getElementById('questionsContainer').style.display = 'none';
+            resultsContainer.style.display = 'block';
+
+            // Calculate percentages
+            const total = Object.values(results).reduce((a, b) => a + b, 0);
+            const percentages = {};
+            Object.entries(results).forEach(([profession, value]) => {
+                percentages[profession] = Math.round((value / total) * 100);
+            });
+
+            // Sort professions by percentage
+            const sortedResults = Object.entries(percentages)
+                .sort(([,a], [,b]) => b - a);
+
+            const html = sortedResults.map(([profession, percentage]) => `
+                <div class="profession-result">
+                    <div class="percentage-circle">
+                        <svg width="100" height="100">
+                            <circle class="background" cx="50" cy="50" r="45" />
+                            <circle class="progress" cx="50" cy="50" r="45" 
+                                stroke-dasharray="${percentage * 2.827}, 282.7" />
+                        </svg>
+                        <div class="percentage-text">${percentage}%</div>
+                    </div>
+                    <div>
+                        <h3>${getProfessionName(profession)}</h3>
+                        <p>${getProfessionDescription(profession)}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            resultsContainer.innerHTML += html;
+        }
+
+        function getProfessionName(profession) {
+            const names = {
+                programming: "პროგრამირება",
+                business: "ბიზნესი",
+                medicine: "მედიცინა",
+                law: "იურისპრუდენცია"
+            };
+            return names[profession];
+        }
+
+        function getProfessionDescription(profession) {
+            const descriptions = {
+                programming: "თქვენ გაქვთ ძლიერი მიდრეკილება ტექნოლოგიებისა და პროგრამირებისკენ",
+                business: "თქვენ გაქვთ ბიზნესის მართვისა და განვითარების კარგი პოტენციალი",
+                medicine: "თქვენ გაქვთ მედიცინის სფეროში მოღვაწეობის კარგი წინაპირობა",
+                law: "თქვენ გაქვთ იურიდიულ სფეროში წარმატების მიღწევის კარგი შანსი"
+            };
+            return descriptions[profession];
+        }
+
+        // Start with first question
+        displayQuestion(0);
+    </script>
+</body>
+
+</html>
